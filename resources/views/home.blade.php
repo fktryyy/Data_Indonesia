@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home - Lowongan Kerja</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,14 +34,18 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Selamat Datang di Halaman Home</h1>
-        <p>Ini adalah halaman home sederhana menggunakan HTML dan CSS.</p>
-        <a href="#" class="button">Pelajari Lebih Lanjut</a>
+        <h1>Selamat Datang di Portal Lowongan Kerja PT Subah Spinning Mils</h1>
+        <p>Rekrutmen Karyawan.</p>
+        <a href="{{ url('/rekrutmen') }}" class="button">Lamar</a>
     </div>
 </body>
 </html>
