@@ -68,102 +68,82 @@
 </head>
 <body>
     <div class="container">
-        <h2>Form Rekrutmen</h2>
-        <form action="{{ route('rekrutmen.store') }}" method="POST">
+        <h2>Form Personal</h2>
+        <form action="{{ route('personal.store') }}" method="POST">
             @csrf
-            
-            <div class="section">
-                <h3>Personal</h3>
-                <label>Nama:</label>
-                <input type="text" name="nama" required>
+            <label>Nama:</label>
+            <input type="text" name="nama" required>
+            <label>No. KTP:</label>
+            <input type="text" name="no_ktp" maxlength="16" required>
+            <label>Nomor Telepon:</label>
+            <input type="text" name="nomor_telepon" required>
+            <label>Alamat Email:</label>
+            <input type="email" name="email" required>
+            <label>Jenis Kelamin:</label>
+            <select name="jenis_kelamin" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+            <label>Nama Ibu:</label>
+            <input type="text" name="nama_ibu" required>
+            <label>Tempat Lahir:</label>
+            <input type="text" name="tempat_lahir" required>
+            <label>Tanggal Lahir:</label>
+            <input type="date" name="tanggal_lahir" required>
+            <label>Alamat Lengkap:</label>
+            <textarea name="alamat_lengkap" required></textarea>
+            <label>Provinsi:</label>
+            <input type="text" name="provinsi" required>
+            <label>Kabupaten:</label>
+            <input type="text" name="kabupaten" required>
+            <label>Kecamatan:</label>
+            <input type="text" name="kecamatan" required>
+            <label>Kelurahan:</label>
+            <input type="text" name="kelurahan" required>
+            <label>Status:</label>
+            <select name="status" required>
+                <option value="">Pilih Status</option>
+                <option value="Belum Menikah">Belum Menikah</option>
+                <option value="Menikah">Menikah</option>
+                <option value="Cerai">Cerai</option>
+            </select>
+            <label>Anak:</label>
+            <input type="number" name="anak" min="0">
+            <label>Tinggi Badan (cm):</label>
+            <input type="number" name="tinggi_badan" min="100" max="250">
+            <button type="submit" class="button">Kirim</button>
+        </form>
+    </div>
 
-                <label>No. KTP:</label>
-                <input type="text" name="no_ktp" maxlength="16" required>
-
-                <label>Nomor Telepon:</label>
-                <input type="text" name="nomor_telepon" required>
-
-                <label>Alamat Email:</label>
-                <input type="email" name="email" required>
-
-                <label>Jenis Kelamin:</label>
-                <select name="jenis_kelamin" required>
-                    <option value="">Pilih Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                </select>
-
-                <label>Nama Ibu:</label>
-                <input type="text" name="nama_ibu" required>
-
-                <label>Tempat Lahir:</label>
-                <input type="text" name="tempat_lahir" required>
-
-                <label>Tanggal Lahir:</label>
-                <input type="date" name="tanggal_lahir" required>
-
-                <label>Alamat Lengkap:</label>
-                <textarea name="alamat_lengkap" required></textarea>
-
-                <label>Provinsi:</label>
-                <input type="text" name="provinsi" required>
-
-                <label>Kabupaten:</label>
-                <input type="text" name="kabupaten" required>
-
-                <label>Kecamatan:</label>
-                <input type="text" name="kecamatan" required>
-
-                <label>Kelurahan:</label>
-                <input type="text" name="kelurahan" required>
-
-                <label>Status:</label>
-                <select name="status" required>
-                    <option value="">Pilih Status</option>
-                    <option value="Belum Menikah">Belum Menikah</option>
-                    <option value="Menikah">Menikah</option>
-                    <option value="Cerai">Cerai</option>
-                </select>
-
-                <label>Anak:</label>
-                <input type="number" name="anak" min="0">
-
-                <label>Tinggi Badan (cm):</label>
-                <input type="number" name="tinggi_badan" min="100" max="250">
-            </div>
-            
-            <div class="section">
-                <h3>Pendidikan</h3>
-                <label>Jenjang:</label>
-                <select name="jenjang" required>
-                    <option value="">Pilih Jenjang</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA">SMA</option>
-                    <option value="Diploma">Diploma</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                </select>
-
-                <label>Sekolah/Universitas:</label>
-                <input type="text" name="sekolah_universitas" required>
-            </div>
-            
-            <div class="section">
-                <h3>Pengalaman</h3>
-                <label>Bekerja di PT. SSM:</label>
-                <select name="bekerja_di_ssm" required>
-                    <option value="Tidak Pernah">Tidak Pernah</option>
-                    <option value="Pernah">Pernah</option>
-                </select>
-
-                <label>Pengalaman Kerja Perusahaan Lain:</label>
-                <select name="pengalaman_kerja" required>
-                    <option value="Tidak Pernah">Tidak Pernah</option>
-                    <option value="Pernah">Pernah</option>
-                </select>
-            </div>
-            
+    <div class="container">
+        <h2>Form Pendidikan & Pengalaman</h2>
+        <form action="{{ route('pendidikan.store') }}" method="POST">
+            @csrf
+            <h3>Pendidikan</h3>
+            <label>Jenjang:</label>
+            <select name="jenjang" required>
+                <option value="">Pilih Jenjang</option>
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+                <option value="Diploma">Diploma</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+            </select>
+            <label>Sekolah/Universitas:</label>
+            <input type="text" name="sekolah_universitas" required>
+            <h3>Pengalaman</h3>
+            <label>Bekerja di PT. SSM:</label>
+            <select name="bekerja_di_ssm" required>
+                <option value="Tidak Pernah">Tidak Pernah</option>
+                <option value="Pernah">Pernah</option>
+            </select>
+            <label>Pengalaman Kerja Perusahaan Lain:</label>
+            <select name="pengalaman_kerja" required>
+                <option value="Tidak Pernah">Tidak Pernah</option>
+                <option value="Pernah">Pernah</option>
+            </select>
             <button type="submit" class="button">Kirim</button>
         </form>
     </div>
