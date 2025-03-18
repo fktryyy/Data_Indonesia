@@ -3,149 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Rekrutmen</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2, h3 {
-            color: #333;
-        }
-        label {
-            display: block;
-            text-align: left;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        textarea {
-            resize: vertical;
-            height: 80px;
-        }
-        .button {
-            display: inline-block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .button:hover {
-            background: #0056b3;
-        }
-        .section {
-            text-align: left;
-            margin-top: 20px;
-            padding: 15px;
-            background: #e9ecef;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Form Rekrutmen Karyawan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Form Personal</h2>
-        <form action="{{ route('personal.store') }}" method="POST">
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Form Rekrutmen Karyawan</h2>
+        <form action="{{ route('Store') }}" method="POST" class="p-4 border rounded shadow-sm bg-light">
             @csrf
-            <label>Nama:</label>
-            <input type="text" name="nama" required>
-            <label>No. KTP:</label>
-            <input type="text" name="no_ktp" maxlength="16" required>
-            <label>Nomor Telepon:</label>
-            <input type="text" name="nomor_telepon" required>
-            <label>Alamat Email:</label>
-            <input type="email" name="email" required>
-            <label>Jenis Kelamin:</label>
-            <select name="jenis_kelamin" required>
-                <option value="">Pilih Jenis Kelamin</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
-            <label>Nama Ibu:</label>
-            <input type="text" name="nama_ibu" required>
-            <label>Tempat Lahir:</label>
-            <input type="text" name="tempat_lahir" required>
-            <label>Tanggal Lahir:</label>
-            <input type="date" name="tanggal_lahir" required>
-            <label>Alamat Lengkap:</label>
-            <textarea name="alamat_lengkap" required></textarea>
-            <label>Provinsi:</label>
-            <input type="text" name="provinsi" required>
-            <label>Kabupaten:</label>
-            <input type="text" name="kabupaten" required>
-            <label>Kecamatan:</label>
-            <input type="text" name="kecamatan" required>
-            <label>Kelurahan:</label>
-            <input type="text" name="kelurahan" required>
-            <label>Status:</label>
-            <select name="status" required>
-                <option value="">Pilih Status</option>
-                <option value="Belum Menikah">Belum Menikah</option>
-                <option value="Menikah">Menikah</option>
-                <option value="Cerai">Cerai</option>
-            </select>
-            <label>Anak:</label>
-            <input type="number" name="anak" min="0">
-            <label>Tinggi Badan (cm):</label>
-            <input type="number" name="tinggi_badan" min="100" max="250">
-            <button type="submit" class="button">Kirim</button>
+            
+            <div id="step-1" class="step">
+                <h4 class="mb-3">Personal</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="partner_name" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="partner_name" name="partner_name">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="no_ktp" class="form-label">No KTP</label>
+                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email_from" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email_from" name="email_from" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nama_ibu" class="form-label">Nama Ibu</label>
+                        <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="partner_mobile" class="form-label">Nomor HP</label>
+                        <input type="text" class="form-control" id="partner_mobile" name="partner_mobile" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="alamat" class="form-label">Alamat Lengkap</label>
+                    <input type="text" class="form-control" id="alamat" name="alamat" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="provinsi" class="form-label">Provinsi</label>
+                        <input type="text" class="form-control" id="provinsi" name="provinsi" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="kabupaten" class="form-label">Kabupaten</label>
+                        <input type="text" class="form-control" id="kabupaten" name="kabupaten" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="kecamatan" class="form-label">Kecamatan</label>
+                        <input type="text" class="form-control" id="kecamatan" name="kecamatan" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="kelurahan" class="form-label">Kelurahan</label>
+                        <input type="text" class="form-control" id="kelurahan" name="kelurahan" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="status_pernikahan" class="form-label">Status Pernikahan</label>
+                    <select class="form-control" id="status_pernikahan" name="status_pernikahan" required>
+                        <option value="0">Menikah</option>
+                        <option value="1">Belum Menikah</option>
+                        <option value="2">Cerai Hidup</option>
+                        <option value="3">Cerai Mati</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="jumlah_anak" class="form-label">Jumlah Anak</label>
+                    <input type="number" class="form-control" id="jumlah_anak" name="jumlah_anak" placeholder="0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tinggi_badan" class="form-label">Tinggi Badan (cm)</label>
+                    <input type="number" class="form-control" id="tinggi_badan" name="tinggi_badan" required>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+            </div>
         </form>
     </div>
 
-    <div class="container">
-        <h2>Form Pendidikan & Pengalaman</h2>
-        <form action="{{ route('pendidikan.store') }}" method="POST">
-            @csrf
-            <h3>Pendidikan</h3>
-            <label>Jenjang:</label>
-            <select name="jenjang" required>
-                <option value="">Pilih Jenjang</option>
-                <option value="SD">SD</option>
-                <option value="SMP">SMP</option>
-                <option value="SMA">SMA</option>
-                <option value="Diploma">Diploma</option>
-                <option value="S1">S1</option>
-                <option value="S2">S2</option>
-            </select>
-            <label>Sekolah/Universitas:</label>
-            <input type="text" name="sekolah_universitas" required>
-            <h3>Pengalaman</h3>
-            <label>Bekerja di PT. SSM:</label>
-            <select name="bekerja_di_ssm" required>
-                <option value="Tidak Pernah">Tidak Pernah</option>
-                <option value="Pernah">Pernah</option>
-            </select>
-            <label>Pengalaman Kerja Perusahaan Lain:</label>
-            <select name="pengalaman_kerja" required>
-                <option value="Tidak Pernah">Tidak Pernah</option>
-                <option value="Pernah">Pernah</option>
-            </select>
-            <button type="submit" class="button">Kirim</button>
+            <div id="step-2" class="step d-none">
+                <h4 class="mb-3">Pendidikan</h4>
+                <div class="mb-3">
+                    <label for="jenjang" class="form-label">Jenjang</label>
+                    <select class="form-control" id="jenjang" name="jenjang" required>
+                        <option value="0">SMA</option>
+                        <option value="1">S1</option>
+                        <option value="2">S2</option>
+                        <option value="3">S3</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="nama_sekolah" class="form-label">Sekolah/Universitas</label>
+                    <input type="text" class="form-control" id="nama_sekolah" name="nama_sekolah" required>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+            </div>
+            
+            <div id="step-3" class="step d-none">
+                <h4 class="mb-3">Pengalaman</h4>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="existing" name="existing" value="1">
+                    <label class="form-check-label" for="existing">Pernah bekerja di PT. SSM</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="experience" name="experience" value="1">
+                    <label class="form-check-label" for="experience">Pengalaman kerja di perusahaan lain</label>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+            </div>
+            
+            <div id="step-4" class="step d-none">
+                <h4 class="mb-3">Step 4: Konfirmasi</h4>
+                <p>Silakan periksa kembali data yang Anda masukkan:</p>
+                <ul id="confirmation-list"></ul>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                <button type="submit" class="btn btn-success">Kirim</button>
+            </div>
         </form>
     </div>
+
+    <script>
+        function nextStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.add('d-none'));
+            document.getElementById('step-' + step).classList.remove('d-none');
+            if (step === 4) {
+                confirmData();
+            }
+        }
+        
+        function prevStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.add('d-none'));
+            document.getElementById('step-' + step).classList.remove('d-none');
+        }
+        
+        function confirmData() {
+            let confirmationList = document.getElementById('confirmation-list');
+            confirmationList.innerHTML = '';
+            let inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input.type !== 'checkbox' || input.checked) {
+                    let li = document.createElement('li');
+                    li.textContent = `${input.previousElementSibling?.textContent || input.name}: ${input.value}`;
+                    confirmationList.appendChild(li);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

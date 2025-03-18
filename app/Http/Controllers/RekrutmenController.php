@@ -7,66 +7,46 @@ use Illuminate\Support\Facades\Http;
 
 class RekrutmenController extends Controller
 {
-    public function create()
+    public function showForm()
     {
         return view('rekrutmen');
     }
 
-    public function store(Request $request)
+    public function Store(Request $request)
     {
-        // Validasi input dari form
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'no_ktp' => 'required|digits:16',
-            'nomor_telepon' => 'required|string|max:15',
-            'email' => 'required|email',
-            'jenis_kelamin' => 'required',
-            'nama_ibu' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
+            'partner_name' => 'required|string',            
+            'no_ktp' => 'required|string',
+            'email_from' => 'required|email',
+            'jenis_kelamin' => 'required|string',
+            'nama_ibu' => 'required|string',
+            'partner_mobile' => 'required|string',
+            'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
-            'alamat_lengkap' => 'required|string',
+            'alamat' => 'required|string',
             'provinsi' => 'required|string',
             'kabupaten' => 'required|string',
             'kecamatan' => 'required|string',
             'kelurahan' => 'required|string',
-            'status' => 'required|string',
-            'anak' => 'nullable|integer|min:0',
-            'tinggi_badan' => 'nullable|integer|min:100|max:250',
-            'jenjang' => 'required|string',
-            'sekolah_universitas' => 'required|string|max:255',
-            'bekerja_di_ssm' => 'required|string',
-            'pengalaman_kerja' => 'required|string',
+            'status_pernikahan' => 'required|string',
+            'jumlah_anak' => 'required|integer',
+            'tinggi_badan' => 'required|integer',
+            'jenjang' => 'required|integer',
+            'nama_sekolah' => 'required|string',
+            'existing' => 'required|boolean',
+            'experience' => 'required|integer',
         ]);
 
-        // Kirim data ke API eksternal
-        $response = Http::post('https://rec25.ssmindonesia.com/', [
-            'nama' => $request->nama,
-            'no_ktp' => $request->no_ktp,
-            'nomor_telepon' => $request->nomor_telepon,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'nama_ibu' => $request->nama_ibu,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'alamat_lengkap' => $request->alamat_lengkap,
-            'provinsi' => $request->provinsi,
-            'kabupaten' => $request->kabupaten,
-            'kecamatan' => $request->kecamatan,
-            'kelurahan' => $request->kelurahan,
-            'status' => $request->status,
-            'anak' => $request->anak,
-            'tinggi_badan' => $request->tinggi_badan,
-            'jenjang' => $request->jenjang,
-            'sekolah_universitas' => $request->sekolah_universitas,
-            'bekerja_di_ssm' => $request->bekerja_di_ssm,
-            'pengalaman_kerja' => $request->pengalaman_kerja,
-        ]);
+        $data = $request->all();
+        $data['job_id'] = 1;
+        $data['stage_id'] = 1;
 
-        // Cek apakah request berhasil
+        $response = Http::post('https://rec25.ssmindonesia.com/', $data);
+
         if ($response->successful()) {
-            return redirect()->route('rekrutmen.create')->with('success', 'Lamaran berhasil dikirim!');
+            return back()->with('success', 'Data berhasil dikirim!');
         } else {
-            return redirect()->route('rekrutmen.create')->with('error', 'Gagal mengirim lamaran, coba lagi.');
+            return back()->with('error', 'Gagal mengirim data!');
         }
     }
 }
