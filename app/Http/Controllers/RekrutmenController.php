@@ -11,10 +11,18 @@ class RekrutmenController extends Controller
     {
         return view('rekrutmen');
     }
+    public function show(Request $request)
+    {
+        $job_id = $request->query('job_id'); // Ambil job_id dari URL
+        
+        return view('rekrutmen', compact('job_id'));
+    }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'job_id'=> 'required|integer',
+            'stage_id'=> 'required|integer',
             'partner_name' => 'required|string',            
             'no_ktp' => 'required|string',
             'email_from' => 'required|email',
@@ -35,21 +43,22 @@ class RekrutmenController extends Controller
             'nama_sekolah' => 'required|string',
             'existing' => 'sometimes|boolean',
             'experience' => 'sometimes|integer',
+            'nama_perusahaan'=> 'required|integer',
+            'posisi'=> 'required|integer',
+            'lama'=> 'required|integer',
+            'deskripsi'=> 'required|integer'
         ]);
 
         // Tambahkan default nilai untuk existing dan experience jika tidak dicentang
         $validatedData['existing'] = $request->has('existing') ? true : false;
         $validatedData['experience'] = $request->has('experience') ? (int) $request->input('experience') : 0;
-
-        // Tambahkan job_id dan stage_id
-        $validatedData['job_id'] = 1;
-        $validatedData['stage_id'] = 1;
-
         // Kirim data ke API dengan format JSON
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
         ])->post('https://rec25.ssmindonesia.com/applicants', $validatedData);
+        
+        dd($response->json());
 
         // Cek respons API
         if ($response->successful()) {
@@ -58,4 +67,5 @@ class RekrutmenController extends Controller
             return back()->with('error', 'Gagal mengirim data! ' . $response->body());
         }
     }
+    
 }

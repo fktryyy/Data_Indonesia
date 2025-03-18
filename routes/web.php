@@ -7,5 +7,5 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/rekrutmen', [RekrutmenController::class, 'showForm'])->name('rekrutmen');
-Route::post('/rekrutmen/store', [RekrutmenController::class, 'Store'])->name('Store');
+Route::post('/rekrutmen/store', [RekrutmenController::class, 'store'])->name('store');
 

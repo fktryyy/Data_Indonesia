@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="mb-4 text-center">Form Rekrutmen Karyawan</h2>
-        <form action="{{ route('Store') }}" method="POST" class="p-4 border rounded shadow-sm bg-light">
+        <form action="{{ route('store') }}" method="POST" class="p-4 border rounded shadow-sm bg-light">
             @csrf
             <div id="step-1" class="step">
                 <h4 class="mb-3">Personal</h4>
