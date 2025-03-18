@@ -42,10 +42,22 @@
     </style>
 </head>
 <body>
+    <header class="bg-blue-600">
+        <div class="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
+          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Lowongan</h1>
+        </div>
+    </header>
     <div class="container">
         <h1>Selamat Datang di Portal Lowongan Kerja PT Subah Spinning Mils</h1>
         <p>Rekrutmen Karyawan.</p>
-        <a href="{{ url('/rekrutmen') }}" class="button">Lamar</a>
+    
+        @foreach($jobs as $job)
+            <div class="container">
+                <h2>{{ $job['id'] }}</h2>
+                <p>{{ $job['name'] }}</p>
+                <a href="{{ route('rekrutmen', ['id' => $job['id']]) }}" class="button">Lamar</a>
+            </div>
+        @endforeach
     </div>
 </body>
 </html>

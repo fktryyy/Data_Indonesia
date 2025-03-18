@@ -49,7 +49,7 @@ class RekrutmenController extends Controller
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-        ])->post('https://rec25.ssmindonesia.com/', $validatedData);
+        ])->post('https://rec25.ssmindonesia.com/applicants', $validatedData);
 
         // Cek respons API
         if ($response->successful()) {
