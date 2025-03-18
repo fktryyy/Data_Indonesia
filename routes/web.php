@@ -7,6 +7,5 @@ Route::get('/', function () {
     return view('home');
 });
 Route::get('/rekrutmen', [RekrutmenController::class, 'showForm'])->name('rekrutmen');
-Route::post('/rekrutmen', [RekrutmenController::class, 'Store'])->name('Store');
-
+Route::post('/rekrutmen/store', [RekrutmenController::class, 'Store'])->name('Store');
 

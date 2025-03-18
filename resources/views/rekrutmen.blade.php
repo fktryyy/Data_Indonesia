@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="no_ktp" class="form-label">No KTP</label>
-                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" required>
+                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" required maxlength="16" oninput="validateKTP(this)">
                     </div>
                 </div>
                 <div class="row">
@@ -101,7 +101,7 @@
                 <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
             </div>
         </form>
-    </div>
+    
 
             <div id="step-2" class="step d-none">
                 <h4 class="mb-3">Pendidikan</h4>
@@ -173,5 +173,6 @@
             });
         }
     </script>
+    </div>
 </body>
 </html>
