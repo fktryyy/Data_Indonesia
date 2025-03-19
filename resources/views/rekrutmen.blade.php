@@ -14,25 +14,27 @@
         <h2 class="mb-4 text-center">Form Rekrutmen Karyawan</h2>
         <form action="{{ route('store') }}" method="POST" class="p-4 border rounded shadow-sm bg-light">
             @csrf
+            <input type="hidden" name="job_id" value="1"> 
+            <input type="hidden" name="stage_id" value="1">
             <div id="step-1" class="step">
                 <h4 class="mb-3">Personal</h4>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="partner_name" class="form-label">Nama</label>
+                        <label for="partner_name" class="form-label">Nama  <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="partner_name" name="partner_name">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="no_ktp" class="form-label">No KTP</label>
+                        <label for="no_ktp" class="form-label">No KTP <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="no_ktp" name="no_ktp" required maxlength="16" oninput="validateKTP(this)">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="email_from" class="form-label">Email</label>
+                        <label for="email_from" class="form-label">Email <span style="color: red;">(wajib!)</span></label>
                         <input type="email" class="form-control" id="email_from" name="email_from" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin <span style="color: red;">(wajib!)</span></label>
                         <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
@@ -41,28 +43,28 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="nama_ibu" class="form-label">Nama Ibu</label>
+                        <label for="nama_ibu" class="form-label">Nama Ibu <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="partner_mobile" class="form-label">Nomor HP</label>
+                        <label for="partner_mobile" class="form-label">Nomor HP <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="partner_mobile" name="partner_mobile" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                        <label for="tempat_lahir" class="form-label">Tempat Lahir <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span style="color: red;">(wajib!)</span></label>
                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
                     </div>
                 </div>
                 
                 <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="status_pernikahan" class="form-label">Status Pernikahan</label>
+                    <label for="status_pernikahan" class="form-label">Status Pernikahan <span style="color: red;">(wajib!)</span></label>
                     <select class="form-control" id="status_pernikahan" name="status_pernikahan" required>
                         <option value="0">Menikah</option>
                         <option value="1">Belum Menikah</option>
@@ -71,37 +73,37 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="jumlah_anak" class="form-label">Jumlah Anak</label>
+                    <label for="jumlah_anak" class="form-label">Jumlah Anak <span style="color: red;">(isikan 0 jika belum punya anak)</span></label>
                     <input type="number" class="form-control" id="jumlah_anak" name="jumlah_anak" placeholder="0" required>
                 </div>
             </div>
                 <div class="col-md-6 mb-3">
-                    <label for="tinggi_badan" class="form-label">Tinggi Badan (cm)</label>
+                    <label for="tinggi_badan" class="form-label">Tinggi Badan (cm) <span style="color: red;">(wajib!)</span></label>
                     <input type="number" class="form-control" id="tinggi_badan" name="tinggi_badan" required>
                 </div>
-            
+                <input type="hidden" name="type_id" value="1">
                 <div class="col-md-6 mb-3">
-                    <label for="alamat" class="form-label">Alamat Lengkap</label>
+                    <label for="alamat" class="form-label">Alamat Lengkap <span style="color: red;">(wajib!)</span></label>
                     <input type="text" class="form-control" id="alamat" name="alamat" required>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="provinsi" class="form-label">Provinsi</label>
-                        <select class="form-control select2" id="provinsi" required></select>
+                        <label for="provinsi" class="form-label">Provinsi <span style="color: red;">(wajib!)</span></label>
+                        <select class="form-control select2" id="provinsi" name="provinsi" required></select>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="kabupaten" class="form-label">Kabupaten</label>
-                        <select class="form-control select2" id="kabupaten" required></select>
+                        <label for="kabupaten" class="form-label">Kabupaten <span style="color: red;">(wajib!)</span></label>
+                        <select class="form-control select2" id="kabupaten" name="kabupaten" required></select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="kecamatan" class="form-label">Kecamatan</label>
-                        <select class="form-control select2" id="kecamatan" required></select>
+                        <label for="kecamatan" class="form-label">Kecamatan <span style="color: red;">(wajib!)</span></label>
+                        <select class="form-control select2" id="kecamatan" name="kecamatan" required></select>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="kelurahan" class="form-label">Kelurahan</label>
-                        <select class="form-control select2" id="kelurahan" required></select>
+                        <label for="kelurahan" class="form-label">Kelurahan <span style="color: red;">(wajib!)</span></label>
+                        <select class="form-control select2" id="kelurahan" name="kelurahan" required></select>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
@@ -111,7 +113,7 @@
             <div id="step-2" class="step d-none">
                 <h4 class="mb-3">Pendidikan</h4>
                 <div class="mb-3">
-                    <label for="jenjang" class="form-label">Jenjang</label>
+                    <label for="jenjang" class="form-label">Jenjang <span style="color: red;">(wajib!)</span></label>
                     <select class="form-control" id="jenjang" name="jenjang" required>
                         <option value="0">SMA</option>
                         <option value="1">S1</option>
@@ -120,7 +122,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="nama_sekolah" class="form-label">Sekolah/Universitas</label>
+                    <label for="nama_sekolah" class="form-label">Sekolah/Universitas <span style="color: red;">(wajib!)</span></label>
                     <input type="text" class="form-control" id="nama_sekolah" name="nama_sekolah" required>
                 </div>
                 <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
@@ -137,6 +139,10 @@
                     <input class="form-check-input" type="checkbox" id="experience" name="experience" value="1">
                     <label class="form-check-label" for="experience">Pengalaman kerja di perusahaan lain</label>
                 </div>
+                <input type="hidden" name="nama_perusahaan" value="PT Contoh">
+                <input type="hidden" name="posisi" value="Staff">
+                <input type="hidden" name="lama" value="1 Tahun">
+                <input type="hidden" name="deskripsi" value="Deskripsi pekerjaan">
                 <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
                 <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
             </div>
