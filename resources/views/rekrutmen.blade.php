@@ -18,7 +18,7 @@
             <input type="hidden" name="stage_id" value="1">
             <div id="step-1" class="step">
                 <h4 class="mb-3">Personal</h4>
-                <div class="row">
+                <div class="row">       
                     <div class="col-md-6 mb-3">
                         <label for="partner_name" class="form-label">Nama  <span style="color: red;">(wajib!)</span></label>
                         <input type="text" class="form-control" id="partner_name" name="partner_name">
@@ -153,11 +153,45 @@
                 <ul id="confirmation-list"></ul>
                 <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
                 <button type="submit" class="btn btn-success">Kirim</button>
-            </div>
-            
+            </div>    
         </form>
     </div>
-
+    <script>
+        function confirmData() {
+            let data = {
+                'Nama': document.getElementById('partner_name').value,
+                'No KTP': document.getElementById('no_ktp').value,
+                'Email': document.getElementById('email_from').value,
+                'Jenis Kelamin': document.getElementById('jenis_kelamin').value,
+                'Nama Ibu': document.getElementById('nama_ibu').value,
+                'Nomor HP': document.getElementById('partner_mobile').value,
+                'Tempat Lahir': document.getElementById('tempat_lahir').value,
+                'Tanggal Lahir': document.getElementById('tanggal_lahir').value,
+                'Status Pernikahan': document.getElementById('status_pernikahan').value,
+                'Jumlah Anak': document.getElementById('jumlah_anak').value,
+                'Tinggi Badan': document.getElementById('tinggi_badan').value,
+                'Alamat Lengkap': document.getElementById('alamat').value,
+                'Provinsi': $('#provinsi option:selected').text(),
+                'Kabupaten': $('#kabupaten option:selected').text(),
+                'Kecamatan': $('#kecamatan option:selected').text(),
+                'Kelurahan': $('#kelurahan option:selected').text(),
+                'Jenjang Pendidikan': document.getElementById('jenjang').value,
+                'Nama Sekolah/Universitas': document.getElementById('nama_sekolah').value,
+                'Pernah Bekerja di PT. SSM': document.getElementById('existing').checked ? 'Ya' : 'Tidak',
+                'Pengalaman Kerja di Perusahaan Lain': document.getElementById('experience').checked ? 'Ya' : 'Tidak'
+            };
+    
+            let confirmationList = document.getElementById('confirmation-list');
+            confirmationList.innerHTML = '';
+            
+            for (let key in data) {
+                let li = document.createElement('li');
+                li.textContent = `${key}: ${data[key]}`;
+                confirmationList.appendChild(li);
+            }
+        }
+    </script>
+    
     <script>
         function nextStep(step) {
             document.querySelectorAll('.step').forEach(el => el.classList.add('d-none'));
