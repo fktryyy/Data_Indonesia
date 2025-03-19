@@ -66,10 +66,10 @@
                 <div class="col-md-6 mb-3">
                     <label for="status_pernikahan" class="form-label">Status Pernikahan <span style="color: red;">(wajib!)</span></label>
                     <select class="form-control" id="status_pernikahan" name="status_pernikahan" required>
-                        <option value="0">Menikah</option>
-                        <option value="1">Belum Menikah</option>
-                        <option value="2">Cerai Hidup</option>
-                        <option value="3">Cerai Mati</option>
+                        <option value="menikah">Menikah</option>
+                        <option value="belum menikah">Belum Menikah</option>
+                        <option value="cerai hidup">Cerai Hidup</option>
+                        <option value="cerai mati">Cerai Mati</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -139,10 +139,10 @@
                     <input class="form-check-input" type="checkbox" id="experience" name="experience" value="1">
                     <label class="form-check-label" for="experience">Pengalaman kerja di perusahaan lain</label>
                 </div>
-                <input type="hidden" name="nama_perusahaan" value="PT Contoh">
+                <input type="hidden" name="nama_perusahaan" value="PT Subah Spinning Mils">
                 <input type="hidden" name="posisi" value="Staff">
                 <input type="hidden" name="lama" value="1 Tahun">
-                <input type="hidden" name="deskripsi" value="Deskripsi pekerjaan">
+                <input type="hidden" name="deskripsi" value="Mampu bekerja dengan baik">
                 <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
                 <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
             </div>
@@ -154,6 +154,7 @@
                 <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
                 <button type="submit" class="btn btn-success">Kirim</button>
             </div>
+            
         </form>
     </div>
 
@@ -171,18 +172,7 @@
             document.getElementById('step-' + step).classList.remove('d-none');
         }
         
-        function confirmData() {
-            let confirmationList = document.getElementById('confirmation-list');
-            confirmationList.innerHTML = '';
-            let inputs = document.querySelectorAll('input, select');
-            inputs.forEach(input => {
-                if (input.type !== 'checkbox' || input.checked) {
-                    let li = document.createElement('li');
-                    li.textContent = `${input.previousElementSibling?.textContent || input.name}: ${input.value}`;
-                    confirmationList.appendChild(li);
-                }
-            });
-        }
+        
     </script>
      <script>
         $(document).ready(function() {

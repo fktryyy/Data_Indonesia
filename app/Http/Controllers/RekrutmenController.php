@@ -14,13 +14,13 @@ class RekrutmenController extends Controller
 
     public function show(Request $request)
     {
-        $job_id = $request->query('job_id'); // Ambil job_id dari URL
+        $job_id = $request->query('job_id');
         return view('rekrutmen', compact('job_id'));
     }
 
     public function store(Request $request)
     {
-        $response = Http::post('https://rec25.ssmindonesia.com/applicants', [
+        $data = $request->validate([
             'job_id' => 'required|integer',
             'stage_id' => 'required|integer',
             'name' => 'required|string', 
@@ -49,12 +49,15 @@ class RekrutmenController extends Controller
             'lama' => 'required|string', 
             'deskripsi' => 'required|string'
         ]);
-        dd($response);
+        
 
-        // if ($response->successful()) {
-        //     return redirect()->back()->with('success', 'Data berhasil disimpan!');
-        // } else {
-        //     return redirect()->back()->with('error', 'Gagal menyimpan data!');
-        // }
-    }
+        
+        $response = Http::post('https://rec25.ssmindonesia.com/applicants', $data);
+
+        if ($response->successful()) {
+            return redirect()->back()->with('success', 'Data berhasil disimpan!');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan data!');
+        }
+     }
 }
