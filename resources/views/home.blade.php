@@ -4,60 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Lowongan Kerja</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
         }
-        h1 {
-            color: #333;
+        .lamar-btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        p {
-            color: #666;
-        }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background: #0056b3;
+        .lamar-btn:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body>
-    <header class="bg-blue-600">
-        <div class="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Lowongan</h1>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">Portal Lowongan Kerja</h1>
         </div>
     </header>
-    <div class="container">
-        <h1>Selamat Datang di Portal Lowongan Kerja PT Subah Spinning Mils</h1>
-        <p>Rekrutmen Karyawan.</p>
-    
-        @foreach($jobs as $job)
-            <div class="container">
-                <h2>{{ $job['id'] }}</h2>
-                <p>{{ $job['name'] }}</p>
-                <a href="{{ route('rekrutmen', ['id' => $job['id']]) }}" class="button">Lamar</a>
-            </div>
-        @endforeach
-    </div>
+    <main class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg max-w-3xl">
+        <h2 class="text-2xl font-semibold text-gray-800 text-center">Selamat Datang di PT Subah Spinning Mills</h2>
+        <p class="text-gray-600 text-center mt-2">Temukan peluang kerja yang sesuai dengan bakat dan minat Anda.</p>
+        <div class="mt-6 space-y-6">
+            @foreach($jobs as $job)
+                <div class="p-4 border rounded-lg shadow-md bg-gray-50 flex flex-col items-center text-center job-card">
+                    <h3 class="text-xl font-bold text-gray-700">{{ $job['name'] }}</h3>
+                    <p class="text-gray-600">ID: {{ $job['id'] }}</p>
+                    <a href="{{ route('rekrutmen') }}" class="mt-3 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition lamar-btn" data-job-id="{{ $job['id'] }}">Lamar</a>
+                </div>
+            @endforeach
+        </div>
+    </main>
+    <footer class="mt-8 py-4 bg-gray-200 text-center text-gray-600 text-sm">
+        &copy; 2025 PT Subah Spinning Mills - Semua Hak Dilindungi
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.lamar-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    let jobId = this.getAttribute('data-job-id');
+                    localStorage.setItem('selectedJobId', jobId);
+                    console.log("Job ID tersimpan:", jobId);
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
