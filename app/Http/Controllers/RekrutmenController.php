@@ -58,10 +58,10 @@ class RekrutmenController extends Controller
         // dd($response->status(), $response->body());
        
         if ($response->successful()) {
-            return redirect()->back()->with('success', 'Data berhasil disimpan!');
+            return redirect()->route('home')->with('success', 'Data berhasil disimpan!');
         } else {
            
-            return redirect()->back()->with('error', 'Gagal menyimpan data!');
+            return redirect()->route('home')->with('error', 'Gagal menyimpan data!');
          }
     }
 
