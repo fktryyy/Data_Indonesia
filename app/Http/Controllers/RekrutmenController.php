@@ -49,19 +49,20 @@ class RekrutmenController extends Controller
                 'lama' => $request->lama,
                 'deskripsi' => $request->deskripsi
         ];
-        dd($data);
-//         $response = Http::withHeaders([
-//             'Accept' => 'application/json',
-//             'Content-Type' => 'application/json'
-//         ])->post('https://rec25.ssmindonesia.com/applicants', $data);
+        // dd($data);
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ])->post('https://rec25.ssmindonesia.com/applicants', $data);
         
+        // dd($response->status(), $response->body());
        
-//         if ($response->successful()) {
-//             return redirect()->back()->with('success', 'Data berhasil disimpan!');
-//         } else {
+        if ($response->successful()) {
+            return redirect()->back()->with('success', 'Data berhasil disimpan!');
+        } else {
            
-//             return redirect()->back()->with('error', 'Gagal menyimpan data!');
-//          }
+            return redirect()->back()->with('error', 'Gagal menyimpan data!');
+         }
     }
 
 }

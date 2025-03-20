@@ -131,10 +131,10 @@
                 <div class="mb-3">
                     <label for="type_id" class="form-label">Jenjang <span style="color: red;">(wajib!)</span></label>
                     <select class="form-control" id="type_id" name="type_id" required>
-                        <option value="0">SMA</option>
-                        <option value="1">S1</option>
-                        <option value="2">S2</option>
-                        <option value="3">S3</option>
+                        <option value="1">SMA</option>
+                        <option value="2">S1</option>
+                        <option value="3">S2</option>
+                        <option value="4">S3</option>
                     </select>
                 </div>
                 <div class="mb-3">
