@@ -329,7 +329,6 @@
         $('#selected_kelurahan').val(kelurahanName);
     });
 });
-
     </script>
     </div>
 </form>
